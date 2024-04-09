@@ -28,8 +28,8 @@ n_He = 1.00036
 def momentum(m0, E, c):
    E2 = E**2
    c2 = c**2
-   print(np.sqrt(E2 - (m0 * c2)**2) / c)
-   return np.sqrt(E2 - (m0 * c2)**2) / c
+   print(np.sqrt((E2 - (m0 * c2)**2) / c2))
+   return np.sqrt((E2 - (m0 * c2)**2) / c2)
 
 def betta(m0, E, c):
     gamma = np.sqrt(1 + (momentum(m0, E, c) / (m0 * c)) ** 2)
