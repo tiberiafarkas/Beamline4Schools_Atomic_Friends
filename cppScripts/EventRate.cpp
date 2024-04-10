@@ -128,7 +128,7 @@ int main() {
 
     const double Nbeam=5*1e5;
     const double NA=6.022*1e23;
-    const double l=0.03;
+    const double l=0.03/100;
 
     for (auto& elem : elements) {
         elem.mass/=1000;
