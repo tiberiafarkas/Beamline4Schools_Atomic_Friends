@@ -24,22 +24,23 @@ n_He = 1.00036
 # v -> particle velocity [m/s]
 # B -> velocity relative to speed of light in vacuum
 
-# E*2 = (p*c)2 + (m0*c2)*2
-def momentum(m0, E, c):
-   E2 = E**2
-   c2 = c**2
-   print(np.sqrt(E2 - (m0 * c2)**2) / c)
-   return np.sqrt(E2 - (m0 * c2)**2) / c
+def energyToMomentum(E, m):
+    p = np.sqrt(E**2 - m**2)
+    return p/1E9
 
-def betta(m0, E, c):
-    gamma = np.sqrt(1 + (momentum(m0, E, c) / (m0 * c)) ** 2)
-    bettta = np.sqrt(1 - (1 / gamma) ** 2) # initially, you forgot to put sqrt for beta
-    print(gamma)
-    return bettta
+def gamma(E, m):
+    gamma = E / m
+    return gamma
+
+def beta(E, m):
+    gamma = E / m
+    beta = np.sqrt((gamma**2-1) / (gamma ** 2))
+    return beta
+
 
 # cos(theta) = 1 / (B*n)
 def cherenkovAngle(m0, E, n, c):
-    B = betta(m0, E, c)
+    B = beta(m0, E, c)
     print(B)
     try:
         theta = math.acos(1 / (B * n))
@@ -106,4 +107,14 @@ def draw_cherenkov_ring_2d(E, m0, n, radius=10):
 
     plt.show()
 
-draw_cherenkov_ring(1.121e-9, m0_p, 1.33)
+for i in range(1, 16):
+    print(f"ENERGY:{i}")
+    print()
+    print(f"Momentum for electron: {energyToMomentum(i * 1e9,me)} GeV/c")
+    print(f"Momentum for proton: {energyToMomentum(i * 1e9,mp)} GeV/c")
+
+    print(f"gamma for electron: {gamma(i * 1e9,me)} ")
+    print(f"gamma for proton: {gamma(i * 1e9,mp)}")
+
+    print(f"beta for electron: {beta(i * 1e9,me)} GeV/c")
+    print(f"beta for proton: {beta(i * 1e9,mp)} GeV/c")
