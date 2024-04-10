@@ -3,10 +3,6 @@ import matplotlib.pyplot as plt
 import math
 # >>>> Constants
 
-# > rest mass of electron
-m0_e = 9.109e-31 # [kg]
-# > rest mass of proton
-m0_p = 1.673e-27 # [kg]
 # > speed of light
 c = 299792458   # [m/s]
 # > refractive index N2
@@ -15,6 +11,9 @@ n_N2 = 1.00029
 n_Ar = 1.000281
 # > refractive index He
 n_He = 1.00036
+
+me = 511E3 # [eV]
+mp = 938E6 # [eV]
 
 # >>>> Calculations
 # E -> particle energy [J]
@@ -72,13 +71,13 @@ def draw_cherenkov_ring(E, m0, n, radius=10, ax=None):
         ax.plot(x, y, z)
         ax_side.plot(x, y)
 
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
+    ax.set_xlabel('X [m]')
+    ax.set_ylabel('Y [m]')
+    ax.set_zlabel('Z [m]')
     ax.set_title('Cherenkov Ring')
 
-    ax_side.set_xlabel('X')
-    ax_side.set_ylabel('Y')
+    ax_side.set_xlabel('X [m]')
+    ax_side.set_ylabel('Y [m]')
     ax_side.set_aspect('equal', adjustable='box')
     ax_side.set_title('Side View')
 
@@ -100,8 +99,8 @@ def draw_cherenkov_ring_2d(E, m0, n, radius=10):
     ax.plot([0, 2*radius], [0, 2*radius], color='black', linestyle='--')
 
     ax.set_aspect('equal', 'box')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
+    ax.set_xlabel('X [m]')
+    ax.set_ylabel('Y [m]')
     ax.set_title('Cherenkov Rings')
     ax.legend()
 
